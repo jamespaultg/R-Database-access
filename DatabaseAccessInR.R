@@ -22,11 +22,11 @@ invisible(lapply(packages_used, require, character.only = TRUE))
 
 # -------------  Functions to read in the SQL query file and prepare it for processing in R ----------------------------------------------
 LINECLEAN <- function(x) {
-  x = gsub("\t+", "", x, perl=TRUE); # remove all tabs
+  x = gsub("\t+", " ", x, perl=TRUE); # replace all tabs with a blankspace
   x = gsub("^\\s+", "", x, perl=TRUE); # remove leading whitespace
   x = gsub("\\s+$", "", x, perl=TRUE); # remove trailing whitespace
   x = gsub("[ ]+", " ", x, perl=TRUE); # collapse multiple spaces to a single space
-  x = gsub("^[--]+.*$", "", x, perl=TRUE); # destroy any comments
+  x = gsub("[-]{2}.*$", "", x, perl=TRUE); # remove comments - lines starting with comment(--) or comment appearing on same line after a sql command
   x = gsub(";", "", x, perl=TRUE); # destroy any semicolons
   x = gsub(":([A-Za-z_]+)","{{\\1}}",x, perl=TRUE) # replace sql query parameter ":parameter" to "{{parameter}}" (to use infuser to pass values - better readability)
   return(x)
