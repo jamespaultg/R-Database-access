@@ -43,7 +43,7 @@ ONELINEQ <- function(PRETTYQUERY,DIRPATH) {
 # TODO: add eof newline automatically to remove warning
 
 # -------------  Provide the SQL query file  ----------------------------------------------
-my_sql = ONELINEQ("queryresult Premiestand as-of particular date 20170102_TEST.sql","S:\\SC_S\\INF\\James\\Premie Overzicht\\Queries\\")
+my_sql = ONELINEQ("query.sql","file-path")
 
 # Pass parameters to the Query
 library(infuser)
@@ -71,6 +71,7 @@ dbDisconnect(con)
 
 # -------------  use ROracle  ----------------------------------------------
 # Installing ROracle if not already installed
+# Install Oracle client
 # check if environment variables OCI_INC, OCI_LIB64 are persent. If not, use the following(be sure to provide the correct location)
 #Sys.setenv(OCI_INC = "C:\\oracle64\\product\\11.2.0\\client_1\\oci\\include")
 #Sys.setenv(OCI_LIB64 = "C:\\oracle64\\product\\11.2.0\\client_1\\bin")
